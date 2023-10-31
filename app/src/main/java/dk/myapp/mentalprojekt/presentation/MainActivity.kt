@@ -18,28 +18,28 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dk.myapp.mentalprojekt.PulsSensor.PulsSensor
-import dk.myapp.mentalprojekt.Services.PTSDService
+import dk.myapp.mentalprojekt.services.PTSDService
 import dk.myapp.mentalprojekt.presentation.theme.MentalProjektTheme
 
 
 class MainActivity : ComponentActivity() {
 
     private lateinit var sensorManager: SensorManager
-    private lateinit var pulsSensor: PulsSensor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        pulsSensor = PulsSensor(this, sensorManager)
-        pulsSensor.setupListener()
-
 
         setContent {
             MentalProjektTheme(){
                 val navController = rememberNavController()
-                val pulsSensor=PulsSensor(this,sensorManager)
-                val service= PTSDService(pulsSensor){navController.navigate("anfaldsdetektionScreen")}
+                val service= PTSDService(){
+                    if ("hovedMenu"==navController.currentDestination?.route)
+                        navController.navigate("anfaldsdetektionScreen")
+                }
+                val pulsSensor=PulsSensor(this,sensorManager,service)
+                pulsSensor.setupListener()
                 AppNav(navController)
             }
         }

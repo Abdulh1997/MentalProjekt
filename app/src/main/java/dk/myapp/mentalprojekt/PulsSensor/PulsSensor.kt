@@ -11,9 +11,10 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.navigation.compose.rememberNavController
+import dk.myapp.mentalprojekt.services.PTSDService
+import dk.myapp.mentalprojekt.services.PulseListener
 
-class PulsSensor(private val context: Context, private val manager: SensorManager) {
+class PulsSensor(private val context: Context, private val manager: SensorManager,private val pulseListener:PulseListener) {
 
 
     private lateinit var pulseSensor: Sensor
@@ -38,6 +39,7 @@ class PulsSensor(private val context: Context, private val manager: SensorManage
                             val pulse = it.values[0]
                             pulseValueState.value = pulse
 
+                            pulseListener.pulseDetected(it.values[0].toInt())
                             Log.d("Puls:", "Værdien af puls er: ${pulseValueState.value}")
 
                         }
@@ -51,5 +53,6 @@ class PulsSensor(private val context: Context, private val manager: SensorManage
 
     fun actionOnPulsDetektion() {
         // Your logic here
+
     }
 }
