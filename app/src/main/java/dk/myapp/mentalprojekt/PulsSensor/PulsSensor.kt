@@ -11,11 +11,9 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import dk.myapp.mentalprojekt.services.PTSDService
 import dk.myapp.mentalprojekt.services.PulseListener
 
 class PulsSensor(private val context: Context, private val manager: SensorManager,private val pulseListener:PulseListener) {
-
 
     private lateinit var pulseSensor: Sensor
     val pulseValueState = mutableStateOf(0f)
@@ -26,7 +24,6 @@ class PulsSensor(private val context: Context, private val manager: SensorManage
         if (ContextCompat.checkSelfPermission(context, permission) != granted) {
             ActivityCompat.requestPermissions(context as Activity, arrayOf(permission), 1)
         }
-
         pulseSensor = manager.getDefaultSensor(Sensor.TYPE_HEART_RATE)
 
         manager.registerListener(
@@ -49,10 +46,5 @@ class PulsSensor(private val context: Context, private val manager: SensorManage
             pulseSensor,
             SensorManager.SENSOR_DELAY_NORMAL
         )
-    }
-
-    fun actionOnPulsDetektion() {
-        // Your logic here
-
     }
 }
