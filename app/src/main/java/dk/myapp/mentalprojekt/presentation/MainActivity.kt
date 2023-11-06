@@ -77,6 +77,9 @@ fun AppNav(navController: NavHostController) {
         composable("grænse") {
             GrænseScreen(navController = navController)
         }
+        composable("konfig") {
+            KonfigurationScreen(navController = navController)
+        }
     }
 }
 

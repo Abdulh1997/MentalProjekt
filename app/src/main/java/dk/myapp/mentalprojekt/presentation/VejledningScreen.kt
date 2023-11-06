@@ -1,6 +1,5 @@
 package dk.myapp.mentalprojekt.presentation
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,26 +18,42 @@ import dk.myapp.mentalprojekt.R
 @Composable
 fun VejledningScreen(navController: NavController) {
     Box(
-        modifier = Modifier.size(220.dp).background(Color.LightGray, shape = CircleShape),
+        modifier = Modifier
+            .size(220.dp)
+            .background(Color.LightGray, shape = CircleShape),
         contentAlignment = Alignment.Center
     ) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(16.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                ClickableImage(R.drawable.musik) {navController.navigate("musik") }
-                ClickableImage(R.drawable.ovelsee) { navController.navigate("øvelse")}
+                ClickableImage(
+                    foto = R.drawable.musik,
+                    onClick = { navController.navigate("musik") }
+                )
+                ClickableImage(
+                    foto = R.drawable.ovelsee,
+                    onClick = { navController.navigate("øvelse") }
+                )
             }
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                ClickableImage(R.drawable.sos) { navController.navigate("sos")}
-                ClickableImage(R.drawable.taler) { navController.navigate("grænse")}
+                ClickableImage(
+                    foto = R.drawable.sos,
+                    onClick = { navController.navigate("sos") }
+                )
+                ClickableImage(
+                    foto = R.drawable.taler,
+                    onClick = { navController.navigate("grænse") }
+                )
             }
         }
     }
@@ -51,14 +66,8 @@ fun ClickableImage(foto: Int, onClick: () -> Unit) {
         contentDescription = null,
         modifier = Modifier
             .size(70.dp)
-            .clip(CircleShape) // Gør billedet cirkulært
-            //.background(MaterialTheme.colors.secondary, CircleShape) // Baggrundsfarve for billeder
+            .clip(CircleShape)
             .clickable(onClick = onClick)
-            .padding(4.dp) // Lidt mellemrum mellem billeder
+            .padding(4.dp)
     )
 }
-
-
-
-
-

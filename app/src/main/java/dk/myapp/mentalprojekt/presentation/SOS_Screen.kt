@@ -1,12 +1,15 @@
 package dk.myapp.mentalprojekt.presentation
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.runtime.Composable
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -18,7 +21,7 @@ import androidx.wear.compose.material.Text
 
 
 @Composable
-fun SOSScreen(navController: NavController) {
+fun SOSScreen(navController: NavController, context: Context = LocalContext.current) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -31,7 +34,17 @@ fun SOSScreen(navController: NavController) {
             modifier = Modifier.padding(16.dp)
         ) {
             Button(
-                onClick = { /* Handle "Send besked" button click here */ },
+                onClick = {
+                    val sendIntent = Intent(Intent.ACTION_VIEW).apply {
+                        data =
+                            Uri.parse("smsto:42156558")  // Dette er til at sende til en uspecificeret kontakt.
+                        putExtra("sms_body", "Jeg har lige haft et anfald ")
+                    }
+
+                    if (sendIntent.resolveActivity(context.packageManager) != null) {
+                        context.startActivity(sendIntent)
+                    }
+                },
                 modifier = Modifier
                     .defaultMinSize(minWidth = 100.dp, minHeight = 50.dp)
                     .background(Color.White),
