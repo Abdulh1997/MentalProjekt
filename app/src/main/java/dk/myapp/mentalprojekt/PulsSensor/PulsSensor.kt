@@ -11,7 +11,7 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import dk.myapp.mentalprojekt.services.PulseListener
+import dk.myapp.mentalprojekt.business.services.PulseListener
 
 class PulsSensor(private val context: Context, private val manager: SensorManager,private val pulseListener:PulseListener) {
 

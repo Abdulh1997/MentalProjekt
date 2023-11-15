@@ -16,6 +16,7 @@ import androidx.wear.compose.material.Text
 @Composable
 fun AfvisAnfaldScreen(navController: NavController) {
 
+
     Box(
         modifier = Modifier
             .size(200.dp)
@@ -47,7 +48,4 @@ fun AfvisAnfaldScreen(navController: NavController) {
         }
 
     }
-
-
-
 }

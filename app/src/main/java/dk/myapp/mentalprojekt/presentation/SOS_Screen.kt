@@ -19,7 +19,6 @@ import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Text
 
-
 @Composable
 fun SOSScreen(navController: NavController, context: Context = LocalContext.current) {
     Box(

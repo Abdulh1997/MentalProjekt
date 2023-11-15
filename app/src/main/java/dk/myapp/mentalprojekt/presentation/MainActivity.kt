@@ -18,7 +18,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dk.myapp.mentalprojekt.PulsSensor.PulsSensor
-import dk.myapp.mentalprojekt.services.PTSDService
+import dk.myapp.mentalprojekt.business.services.PTSDService
 import dk.myapp.mentalprojekt.presentation.theme.MentalProjektTheme
 
 
@@ -82,13 +82,3 @@ fun AppNav(navController: NavHostController) {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-

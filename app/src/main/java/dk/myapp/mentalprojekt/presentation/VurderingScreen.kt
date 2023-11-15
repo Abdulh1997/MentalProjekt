@@ -47,8 +47,4 @@ fun VurderingScreen(navController: NavController) {
         }
 
     }
-
-
-
-
 }
