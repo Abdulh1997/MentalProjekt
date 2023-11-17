@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Button
@@ -26,6 +27,7 @@ fun MusikScreen(navController: NavController) {
     val mediaPlayer = remember { MediaPlayer.create(context, R.raw.slapaf) }
     val isPlaying = remember { mutableStateOf(false) }
     var photo by remember { mutableStateOf(R.drawable.play) }
+    val tag: String = "playMusikIcon"
 
     // Ryd op når MusikScreen forlader kompositionen
     DisposableEffect(Unit) {
@@ -60,6 +62,7 @@ fun MusikScreen(navController: NavController) {
                 modifier = Modifier
                     .size(100.dp)
                     .clip(CircleShape)
+                    .testTag(if (isPlaying.value) "stopMusicIcon" else "playMusicIcon")
                     .clickable {
                         if (isPlaying.value) {
                             mediaPlayer.pause()

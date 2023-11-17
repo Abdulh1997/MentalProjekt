@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -36,11 +37,11 @@ fun VejledningScreen(navController: NavController) {
                 ClickableImage(
                     foto = R.drawable.musik,
                     onClick = { navController.navigate("musik") }
-                )
+                    , testTag = "musikIconTag")
                 ClickableImage(
                     foto = R.drawable.ovelsee,
                     onClick = { navController.navigate("øvelse") }
-                )
+                    , testTag = "øvelseIconTag")
             }
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -49,18 +50,18 @@ fun VejledningScreen(navController: NavController) {
                 ClickableImage(
                     foto = R.drawable.sos,
                     onClick = { navController.navigate("sos") }
-                )
+                    , testTag = "sosIconTag")
                 ClickableImage(
                     foto = R.drawable.taler,
                     onClick = { navController.navigate("grænse") }
-                )
+                    , testTag = "grænseIconTag")
             }
         }
     }
 }
 
 @Composable
-fun ClickableImage(foto: Int, onClick: () -> Unit) {
+fun ClickableImage(foto: Int, onClick: () -> Unit,testTag:String) {
     Image(
         painter = painterResource(id = foto),
         contentDescription = null,
@@ -69,5 +70,6 @@ fun ClickableImage(foto: Int, onClick: () -> Unit) {
             .clip(CircleShape)
             .clickable(onClick = onClick)
             .padding(4.dp)
+            .testTag(testTag)
     )
 }

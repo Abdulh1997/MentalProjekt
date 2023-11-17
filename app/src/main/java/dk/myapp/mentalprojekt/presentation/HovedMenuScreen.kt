@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -40,7 +41,7 @@ fun HovedMenuScreen(navController: NavController) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize().padding(16.dp)
             ) {
-                ClickableImagee(R.drawable.konfig) { navController.navigate("konfig")}
+                ClickableImagee(R.drawable.konfig, { navController.navigate("konfig")}, testTag = "KonfigIconTag")
 
                 Text(text = "Hej med dig", fontWeight = FontWeight.Bold, color = Color.White)
                 Spacer(modifier = Modifier.height(4.dp))
@@ -49,7 +50,10 @@ fun HovedMenuScreen(navController: NavController) {
 
                 Button(onClick = {
                     navController.navigate("anfaldsdetektionScreen")
-                }, modifier = Modifier.size(100.dp, 30.dp)) {
+                }, modifier = Modifier.size(100.dp, 30.dp)
+                    .testTag("anfaldsDetektionButton")
+
+                ) {
                     Text("Simulere et anfald", fontSize = 11.sp)
                 }
 
@@ -59,7 +63,7 @@ fun HovedMenuScreen(navController: NavController) {
 }
 
 @Composable
-fun ClickableImagee(foto: Int, onClick: () -> Unit) {
+fun ClickableImagee(foto: Int, onClick: () -> Unit,testTag:String) {
     Image(
         painter = painterResource(id = foto),
         contentDescription = null,
@@ -68,6 +72,7 @@ fun ClickableImagee(foto: Int, onClick: () -> Unit) {
             .clip(CircleShape)
             .clickable(onClick = onClick)
             .padding(4.dp)
+            .testTag(testTag)
     )
 }
 

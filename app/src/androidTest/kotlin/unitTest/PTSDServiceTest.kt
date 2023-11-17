@@ -6,41 +6,98 @@ import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito.never
 import org.mockito.Mockito.verify
+import org.mockito.Mockito.verifyNoMoreInteractions
 import org.mockito.MockitoAnnotations
 
 
 class PTSDServiceTest {
 
     @Mock
-    private lateinit var pulseDetection: (Int) -> Unit
+    private lateinit var PulseChanged: (Int) -> Unit
 
-    private lateinit var ptsdService: PTSDService
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        ptsdService = PTSDService(pulseDetection)
     }
+
+    @Test
+    fun Test_med_zero_som_input() {
+        // Arrange
+        val service = PTSDService(PulseChanged)
+
+        // Act
+        service.pulseDetected(0)
+
+        //Assert
+        verify(PulseChanged, never()).invoke(ArgumentMatchers.anyInt()) // Forventer ingen interaktion med PulseChanged
+    }
+
+    @Test
+    fun Test_med_En_værdi_som_input() {
+        // Arrange
+        val service = PTSDService(PulseChanged)
+
+        // Act
+        service.pulseDetected(100)
+
+        // Assert
+        verify(PulseChanged).invoke(100) // Forventer én invocation af PulseChanged med pulsværdi 100
+    }
+
+    @Test
+    fun Test_med_flere_værdier_som_input() {
+        // Arrange
+        val service = PTSDService(PulseChanged)
+
+        // Act
+        service.pulseDetected(97)
+        service.pulseDetected(100)
+
+        // Assert
+        verify(PulseChanged).invoke(100) // Forventer én invocation af PulseChanged med pulsværdi 100
+        verifyNoMoreInteractions(PulseChanged) // Forventer ingen yderligere interaktioner med PulseChanged
+    }
+
 
     // En bestemt handling (repræsenteret ved pulseDetection-funktionen) udføres, når en høj puls-værdi detekteres
     @Test
-    fun testPulseDetected_AboveThreshold() {
-        val highPulse = 100
+    fun testPulseDetected_bliver_kaldt_ved_MaxVærdi_EP3() {
+        // Arrange
+        val service = PTSDService(PulseChanged)
 
-        ptsdService.pulseDetected(highPulse)
+        //Act
+        service.pulseDetected(99)
 
-        verify(pulseDetection).invoke(highPulse)
+        //Assert
+        verify(PulseChanged).invoke(99)
     }
 
 
     // En bestemt handling (repræsenteret ved pulseDetection-funktionen) ikke udføres, når en lav puls-værdi detekteres
     @Test
-    fun testPulseDetected_BelowThreshold() {
-        val lowPulse = 90
+    fun testPulseDetected_ikke_bliver_kaldt_ved_grænseVærdi_EP2() {
+        // Arrange
+        val service = PTSDService(PulseChanged)
 
-        ptsdService.pulseDetected(lowPulse)
+        //Act
+        service.pulseDetected(98)
 
-        verify(pulseDetection, never()).invoke(ArgumentMatchers.anyInt())
+        //Assert
+        verify(PulseChanged, never()).invoke(ArgumentMatchers.anyInt())
     }
 
+
+    // En bestemt handling (repræsenteret ved pulseDetection-funktionen) ikke udføres, når en lav puls-værdi detekteres
+    @Test
+    fun testPulseDetected_ikke_bliver_kaldt_ved_minVærdi_EP1() {
+        // Arrange
+        val service = PTSDService(PulseChanged)
+
+        //Act
+        service.pulseDetected(97)
+
+        //Assert
+        verify(PulseChanged, never()).invoke(ArgumentMatchers.anyInt())
+    }
 }
