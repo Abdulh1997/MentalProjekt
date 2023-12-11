@@ -1,9 +1,3 @@
-/* While this template provides a good starting point for using Wear Compose, you can always
- * take a look at https://github.com/android/wear-os-samples/tree/main/ComposeStarter and
- * https://github.com/android/wear-os-samples/tree/main/ComposeAdvanced to find the most up to date
- * changes to the libraries and their usages.
- */
-
 package dk.myapp.mentalprojekt.presentation
 
 import PTSDanfaldsdetektionScreen
@@ -20,7 +14,6 @@ import androidx.navigation.compose.rememberNavController
 import dk.myapp.mentalprojekt.PulsSensor.PulsSensor
 import dk.myapp.mentalprojekt.business.services.PTSDService
 import dk.myapp.mentalprojekt.presentation.theme.MentalProjektTheme
-
 
 class MainActivity : ComponentActivity() {
 

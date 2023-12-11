@@ -26,7 +26,6 @@ fun VurderingScreen(navController: NavController) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-
         ) {
             Text(text = "Har du brug for mere hjælp?", fontSize = 13.sp, color = Color.White)
             Spacer(modifier = Modifier.height(16.dp))
@@ -45,6 +44,5 @@ fun VurderingScreen(navController: NavController) {
                 Text("Nej", fontSize = 11.sp)
             }
         }
-
     }
 }

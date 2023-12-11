@@ -14,7 +14,6 @@ import androidx.navigation.NavController
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.Text
 
-
 @Composable
 fun KonfigurationScreen(navController: NavController) {
 
@@ -35,19 +34,11 @@ fun KonfigurationScreen(navController: NavController) {
                 Text(text = "Konfiguration view", fontWeight = FontWeight.Bold, color = Color.White)
                 Spacer(modifier = Modifier.height(10.dp))
 
-                //Text(text = "Telefon nummer", fontWeight = FontWeight.Bold, color = Color.White)
-                //Spacer(modifier = Modifier.height(4.dp))
-
-                //Text(text = "Den ønsked besked", fontWeight = FontWeight.Bold, color = Color.White)
-                //Spacer(modifier = Modifier.height(4.dp))
-
-
                 Button(onClick = {
                     navController.navigate("hovedMenu")
                 }, modifier = Modifier.size(100.dp, 30.dp)) {
                     Text("Gem konfig", fontSize = 11.sp)
                 }
-
             }
         }
     }

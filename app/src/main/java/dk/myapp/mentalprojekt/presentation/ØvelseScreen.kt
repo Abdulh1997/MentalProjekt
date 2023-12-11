@@ -10,7 +10,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.Text
-
 @Composable
 fun ØvelseScreen(navController: NavController) {
 
@@ -30,7 +29,6 @@ fun ØvelseScreen(navController: NavController) {
                 color = Color.Black,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
-
             Button(onClick = { navController.navigate("vurdering") }) {
                 Text("Færdig")}
         }

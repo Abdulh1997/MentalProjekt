@@ -46,6 +46,5 @@ fun AfvisAnfaldScreen(navController: NavController) {
                 Text("Nej", fontSize = 11.sp)
             }
         }
-
     }
 }

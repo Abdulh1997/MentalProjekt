@@ -15,12 +15,10 @@ class PTSDServiceTest {
     @Mock
     private lateinit var PulseChanged: (Int) -> Unit
 
-
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
     }
-
     @Test
     fun Test_med_zero_som_input() {
         // Arrange
@@ -32,7 +30,6 @@ class PTSDServiceTest {
         //Assert
         verify(PulseChanged, never()).invoke(ArgumentMatchers.anyInt()) // Forventer ingen interaktion med PulseChanged
     }
-
     @Test
     fun Test_med_En_værdi_som_input() {
         // Arrange
@@ -44,7 +41,6 @@ class PTSDServiceTest {
         // Assert
         verify(PulseChanged).invoke(100) // Forventer én invocation af PulseChanged med pulsværdi 100
     }
-
     @Test
     fun Test_med_flere_værdier_som_input() {
         // Arrange
@@ -59,7 +55,6 @@ class PTSDServiceTest {
         verifyNoMoreInteractions(PulseChanged) // Forventer ingen yderligere interaktioner med PulseChanged
     }
 
-
     // En bestemt handling (repræsenteret ved pulseDetection-funktionen) udføres, når en høj puls-værdi detekteres
     @Test
     fun testPulseDetected_bliver_kaldt_ved_MaxVærdi_EP3() {
@@ -73,7 +68,6 @@ class PTSDServiceTest {
         verify(PulseChanged).invoke(99)
     }
 
-
     // En bestemt handling (repræsenteret ved pulseDetection-funktionen) ikke udføres, når en lav puls-værdi detekteres
     @Test
     fun testPulseDetected_ikke_bliver_kaldt_ved_grænseVærdi_EP2() {
@@ -86,7 +80,6 @@ class PTSDServiceTest {
         //Assert
         verify(PulseChanged, never()).invoke(ArgumentMatchers.anyInt())
     }
-
 
     // En bestemt handling (repræsenteret ved pulseDetection-funktionen) ikke udføres, når en lav puls-værdi detekteres
     @Test

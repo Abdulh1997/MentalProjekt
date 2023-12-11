@@ -27,7 +27,6 @@ fun MusikScreen(navController: NavController) {
     val mediaPlayer = remember { MediaPlayer.create(context, R.raw.slapaf) }
     val isPlaying = remember { mutableStateOf(false) }
     var photo by remember { mutableStateOf(R.drawable.play) }
-    val tag: String = "playMusikIcon"
 
     // Ryd op når MusikScreen forlader kompositionen
     DisposableEffect(Unit) {
@@ -54,7 +53,6 @@ fun MusikScreen(navController: NavController) {
                 color = Color.Black,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
-           // var photo: Int = R.drawable.play
             Image(
 
                 painter = painterResource(id = photo),

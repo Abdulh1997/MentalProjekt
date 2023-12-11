@@ -4,26 +4,21 @@ import PTSDanfaldsdetektionScreen
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import dk.myapp.mentalprojekt.presentation.HovedMenuScreen
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
-import dk.myapp.mentalprojekt.R
 import dk.myapp.mentalprojekt.presentation.AfvisAnfaldScreen
 import dk.myapp.mentalprojekt.presentation.MusikScreen
 import dk.myapp.mentalprojekt.presentation.SOSScreen
 import dk.myapp.mentalprojekt.presentation.VejledningScreen
 import dk.myapp.mentalprojekt.presentation.VurderingScreen
-import org.mockito.Mockito.verify
-import java.lang.Thread.sleep
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -158,6 +153,5 @@ class UITest {
         composeTestRule.onNodeWithText("Har du brug for mere hjælp?").assertIsDisplayed()
         composeTestRule.onNodeWithText("Ja").assertIsDisplayed().assertHasClickAction()
         composeTestRule.onNodeWithText("Nej").assertIsDisplayed().assertHasClickAction()
-
     }
 }

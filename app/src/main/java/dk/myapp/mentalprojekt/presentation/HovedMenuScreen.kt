@@ -56,7 +56,6 @@ fun HovedMenuScreen(navController: NavController) {
                 ) {
                     Text("Simulere et anfald", fontSize = 11.sp)
                 }
-
             }
         }
     }
